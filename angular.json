@@ -124,6 +124,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "shared-list-app"
+    }
+  },
+  "defaultProject": "shared-list-app",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }
