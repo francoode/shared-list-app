@@ -26,6 +26,7 @@ export class LoadListsFailure implements Action {
 
 export class AddList implements Action {
   readonly type = ListActionTypes.AddList;
+  constructor(public payload: { data: List }) { }
 }
 
 export class AddListSuccess implements Action {

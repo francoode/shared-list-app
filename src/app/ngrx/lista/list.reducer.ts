@@ -20,6 +20,7 @@ export const initialState: State = {
 export function reducer(state = initialState, action: fromLista.ListActions) {
   switch (action.type) {
     case fromLista.ListActionTypes.LoadLists:
+      console.log('load');
       return {
         ...state,
         loading: true,
@@ -34,8 +35,18 @@ export function reducer(state = initialState, action: fromLista.ListActions) {
         ...state,
         loading: true,
       };
+    case fromLista.ListActionTypes.AddList:
+      return {
+        ...state,
+        loading: true
+      };
+    case fromLista.ListActionTypes.AddListFailure:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload.error
+      };
     case fromLista.ListActionTypes.AddListSuccess:
-      console.log('red');
       return {
         ...state,
         entities: [...state.entities, action.payload.data]

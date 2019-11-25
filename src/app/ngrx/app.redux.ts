@@ -8,3 +8,9 @@ export interface AppState {
 export const AppReducers: ActionReducerMap<AppState> = {
   list: fromLista.reducer
 };
+
+import { ListEffect } from './lista/list.effect';
+
+
+export const effectsArr: any[] = [ ListEffect ];
+

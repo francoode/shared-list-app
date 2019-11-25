@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {List} from '../../ngrx/lista/list.model';
 import {Store} from '@ngrx/store';
-import {AppState} from '../../ngrx/app.reducer';
-import {AddListSuccess} from '../../ngrx/lista/list.actions';
+import {AppState} from '../../ngrx/app.redux';
+import * as fromList from '../../ngrx/lista/list.actions';
 
 
 @Component({
@@ -15,17 +15,15 @@ export class AllListComponent implements OnInit {
 
   form: FormGroup;
 
+  loading = false;
+
   constructor(private fb: FormBuilder,
               private store: Store<AppState>) {
   }
 
   ngOnInit() {
     this.createForm();
-    this.store.select('list').subscribe(
-      (list) => {
-        console.log(list);
-      }
-    );
+    this.storeSucription();
   }
 
   createForm() {
@@ -39,11 +37,20 @@ export class AllListComponent implements OnInit {
       const list = new List();
 
       list.nombre = this.form.controls.name.value;
-      console.log(list);
 
-      this.store.dispatch(new AddListSuccess({data: list}));
-
+      this.store.dispatch(new fromList.AddList({data: list}));
     }
+  }
+
+  storeSucription() {
+    this.store.select('list').subscribe(
+      (data) => {
+        console.log(data);
+      }
+    );
+
+    console.log('load');
+    this.store.dispatch(new fromList.LoadLists());
   }
 
 }
