@@ -16,12 +16,15 @@ import { environment } from '../environments/environment';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule} from '@angular/fire/firestore';
+import { LoginComponent } from './login/login.component';
+import {AngularFireAuthModule} from '@angular/fire/auth';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
-    AllListComponent
+    AllListComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -29,6 +32,7 @@ import { AngularFirestoreModule} from '@angular/fire/firestore';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
+    AngularFireAuthModule,
     StoreModule.forRoot(AppReducers),
     EffectsModule.forRoot(effectsArr),
     StoreDevtoolsModule.instrument({

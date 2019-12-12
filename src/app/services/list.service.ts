@@ -20,7 +20,10 @@ export class ListService {
   add(list: List) {
     return new Promise((resolve, reject) => {
       this.listCollection.add({...list})
-        .then(() => resolve(list))
+        .then((data) => {
+          list.id = data.id;
+          resolve(list);
+        })
         .catch((e) => reject(e));
     });
   }

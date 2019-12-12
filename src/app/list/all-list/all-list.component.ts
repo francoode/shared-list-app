@@ -14,8 +14,8 @@ import * as fromList from '../../ngrx/lista/list.actions';
 export class AllListComponent implements OnInit {
 
   form: FormGroup;
-
   loading = false;
+  lists: {};
 
   constructor(private fb: FormBuilder,
               private store: Store<AppState>) {
@@ -45,7 +45,8 @@ export class AllListComponent implements OnInit {
   storeSucription() {
     this.store.select('list').subscribe(
       (data) => {
-        console.log(data);
+        console.log(data.entities);
+        this.lists = data.entities;
       }
     );
 

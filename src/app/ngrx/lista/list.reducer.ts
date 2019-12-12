@@ -6,13 +6,13 @@ export const listaFeatureKey = 'lista';
 export interface State {
   loading: boolean;
   error: any;
-  entities: List[];
-  ids: [];
+  entities: { [key: string]: List };
+  ids: Array<string>;
 }
 
 export const initialState: State = {
   loading: false,
-  entities: [],
+  entities: {},
   ids: [],
   error: null
 };
@@ -20,7 +20,6 @@ export const initialState: State = {
 export function reducer(state = initialState, action: fromLista.ListActions) {
   switch (action.type) {
     case fromLista.ListActionTypes.LoadLists:
-      console.log('load');
       return {
         ...state,
         loading: true,
@@ -47,9 +46,12 @@ export function reducer(state = initialState, action: fromLista.ListActions) {
         error: action.payload.error
       };
     case fromLista.ListActionTypes.AddListSuccess:
+      const itemid = action.payload.data.id;
+
       return {
         ...state,
-        entities: [...state.entities, action.payload.data]
+        entities: {...state.entities, [itemid]: action.payload.data},
+        ids: [...state.ids, itemid]
       };
     default:
       return {
