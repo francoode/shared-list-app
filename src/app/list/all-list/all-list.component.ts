@@ -45,12 +45,10 @@ export class AllListComponent implements OnInit {
   storeSucription() {
     this.store.select('list').subscribe(
       (data) => {
-        console.log(data.entities);
         this.lists = data.entities;
       }
     );
 
-    console.log('load');
     this.store.dispatch(new fromList.LoadLists());
   }
 

@@ -13,7 +13,11 @@ export const AppReducers: ActionReducerMap<AppState> = {
 };
 
 import { ListEffect } from './lista/list.effect';
+import { UserEffect } from './user/user.effect';
 
 
-export const effectsArr: any[] = [ ListEffect ];
+export const effectsArr: any[] = [
+  ListEffect,
+  UserEffect
+];
 
